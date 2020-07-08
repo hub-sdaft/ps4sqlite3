@@ -1,1 +1,27 @@
-{}
+{
+    "Quick Start": {
+        "prefix": ["psq/start"],
+        "body": ["\nimport sqlite3\n\n${1:connection} = sqlite3.connect('${2:database}')\n${3:cursor} = $1.cursor()\nwith $1:\n\t$0\n\t$1.commit()"],
+        "description": "A quick start for a SQLite3 script."
+    },
+    "Empty SQL": {
+        "prefix": ["psq/sql", "psq/execute"],
+        "body": ["${1:cursor}.execute('$2')"],
+        "description": "An empty SQL query using the cursor's execute method."
+    },
+    "Insert SQL": {
+        "prefix": ["psq/insert"],
+        "body": ["${1:cursor}.execute('INSERT INTO ${2:table} VALUES ($3)')"],
+        "description": "An empty INSERT SQL query"
+    },
+    "Insert with parameters SQL": {
+        "prefix": ["psq/insert-parameter"],
+        "body": ["${1:cursor}.execute('INSERT INTO ${2:table} VALUES (${3:?})', ${4:parameters})"],
+        "description": "An empty INSERT SQL query with parameters (`?`). The parameters field can be changed to any iterable object already declared. Examples here: ADD EXAMPLE"
+    },
+    "Select SQL": {
+        "prefix": ["psq/select-parameter"],
+        "body": ["${1:cursor}.execute('SELECT ${1:*} FROM ${2:table}')"],
+        "description": "An empty SELECT SQL query."
+    },
+}
