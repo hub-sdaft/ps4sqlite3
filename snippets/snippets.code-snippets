@@ -1,39 +1,39 @@
 {
     "Quick Start": {
         "prefix": ["psq/start"],
-        "body": ["\nimport sqlite3\n\n${1:connection} = sqlite3.connect('${2:database}')\n${3:cursor} = $1.cursor()\nwith $1:\n\t$0\n\t$1.commit()"],
+        "body": ["\nimport sqlite3\n\n${1:connection} = sqlite3.connect('${2:database}')\n${0:cursor} = $1.cursor()\nwith $1:\n\t$0\n\t$1.commit()"],
         "description": "A quick start for a SQLite3 script. Imports the sqlite3 module and creates a connection that closes itself at the end."
     },
     "Empty SQL": {
         "prefix": ["psq/sql", "psq/execute"],
-        "body": ["${1:cursor}.execute('$2')"],
+        "body": ["${1:cursor}.execute('$0')"],
         "description": "SQL query using the cursor's execute method."
     },
     //Insert SQLs
     "Insert SQL": {
         "prefix": ["psq/insert"],
-        "body": ["${1:cursor}.execute('INSERT INTO ${2:table} VALUES ($3)')"],
+        "body": ["${1:cursor}.execute('INSERT INTO ${2:table} VALUES ($0)')"],
         "description": "INSERT SQL query using the cursor's execute method."
     },
     "Insert with parameters SQL": {
         "prefix": ["psq/insert-parameter"],
-        "body": ["${1:cursor}.execute('INSERT INTO ${2:table} VALUES (${3:?})', ${4:parameters})"],
+        "body": ["${1:cursor}.execute('INSERT INTO ${2:table} VALUES (${3:?})', ${0:parameters})"],
         "description": "INSERT SQL query with parameters (`?`). The parameters field can be changed to any iterable object already declared. Examples here: ADD EXAMPLE"
     },
     //Select SQLs
     "Select SQL": {
         "prefix": ["psq/select"],
-        "body": ["${1:cursor}.execute('SELECT ${1:field} FROM ${2:table}')"],
+        "body": ["${1:cursor}.execute('SELECT ${1:field} FROM ${0:table}')"],
         "description": "SELECT SQL query using the cursor's execute method."
     },
     "Select Where SQL": {
         "prefix": ["psq/select-where"],
-        "body": ["${1:cursor}.execute('SELECT ${2:field} FROM ${3:table} WHERE ${4:column} ${5:=} ${6:value} ')"],
+        "body": ["${1:cursor}.execute('SELECT ${2:field} FROM ${3:table} WHERE ${4:column} ${5:=} ${0:value} ')"],
         "description": "SELECT WHERE SQL query using the cursor's execute method."
     },
     "Select Where Like": {
         "prefix": ["psq/select-where-like"],
-        "body": ["${1:cursor}.execute('SELECT ${2:field} FROM ${3:table} WHERE ${4:column} LIKE ${5:expression}')"],
+        "body": ["${1:cursor}.execute('SELECT ${2:field} FROM ${3:table} WHERE ${4:column} LIKE ${0:expression}')"],
         "description": "SELECT WHERE LIKE SQL query using the cursor's execute method."
     },
 }
