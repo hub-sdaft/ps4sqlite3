@@ -33,6 +33,9 @@ None, for now.
 
 Here are the extension's Release Notes. More details [here](./CHANGELOG.md)
 
+### [0.1.1](./CHANGELOG.md#0.1.1)
+**Fixed** bug.
+
 ### [0.1.0](./CHANGELOG.md#0.1.0)
 
 Initial release of Python Snippets for SQLite 3 (ps4sqlite3).

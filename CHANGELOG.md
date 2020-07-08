@@ -6,6 +6,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## 0.1.1
+
+### Fixed
+
+Fixed "bug" where you would have to tab after changing the last placeholder.
+
 ## 0.1.0
 
 Initial release of Python Snippets for SQLite3!
