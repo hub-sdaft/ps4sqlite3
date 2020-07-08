@@ -2,7 +2,7 @@
     "name": "ps4sqlite3",
     "displayName": "Python Snippets for SQLite3",
     "description": "A simple extension with code snippets for using SQLite3 with Python",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "engines": {
         "vscode": "^1.46.0"
     },
