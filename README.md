@@ -1,4 +1,4 @@
-# ps4sqlite3 README
+# Python Snippets For SQLite3 (ps4sqlite3)
 
 ## If you want to install and use this extension, **[go here](#Installation)**.
 
