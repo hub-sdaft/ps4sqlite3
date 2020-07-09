@@ -2,38 +2,54 @@
     "Quick Start": {
         "prefix": ["psq/start"],
         "body": ["\nimport sqlite3\n\n${1:connection} = sqlite3.connect('${2:database}')\n${0:cursor} = $1.cursor()\nwith $1:\n\t$0\n\t$1.commit()"],
-        "description": "A quick start for a SQLite3 script. Imports the sqlite3 module and creates a connection that closes itself at the end."
+        "description": "A quick start for an SQLite3 script. Imports the sqlite3 module and creates a connection to a database that closes itself at the end."
     },
     "Empty SQL": {
         "prefix": ["psq/sql", "psq/execute"],
         "body": ["${1:cursor}.execute('$0')"],
-        "description": "SQL query using the cursor's execute method."
+        "description": "SQL query using cursor.execute()."
+    },
+    "Quick Start (DB in Memory)": {
+        "prefix": "prefix",
+        "body": ["\nimport sqlite3\n\n${1:connection} = sqlite3.connect(':memory:')\n${0:cursor} = $1.cursor()\nwith $1:\n\t$0\n\t$1.commit()"],
+        "description": ["A quick start for an SQLite3 script. Imports the sqlite3 module and creates a connection to a database in memory, which closes itself at the end."]
     },
     //Insert SQLs
     "Insert SQL": {
         "prefix": ["psq/insert"],
         "body": ["${1:cursor}.execute('INSERT INTO ${2:table} VALUES ($0)')"],
-        "description": "INSERT SQL query using the cursor's execute method."
+        "description": "INSERT SQL query using cursor.execute()."
     },
     "Insert with parameters SQL": {
         "prefix": ["psq/insert-parameter"],
         "body": ["${1:cursor}.execute('INSERT INTO ${2:table} VALUES (${3:?})', ${0:parameters})"],
-        "description": "INSERT SQL query with parameters (`?`). The parameters field can be changed to any iterable object already declared. Examples here: ADD EXAMPLE"
+        "description": "INSERT SQL query with parameters (`?`) using cursor.execute(). The parameters field can be changed to any iterable object already declared. Examples here: ADD EXAMPLE"
     },
     //Select SQLs
     "Select SQL": {
         "prefix": ["psq/select"],
-        "body": ["${1:cursor}.execute('SELECT ${1:field} FROM ${0:table}')"],
+        "body": ["${1:cursor}.execute('SELECT \"${1:field}\" FROM \"${0:table}'\")"],
         "description": "SELECT SQL query using the cursor's execute method."
     },
     "Select Where SQL": {
         "prefix": ["psq/select-where"],
-        "body": ["${1:cursor}.execute('SELECT ${2:field} FROM ${3:table} WHERE ${4:column} ${5:=} ${0:value} ')"],
+        "body": ["${1:cursor}.execute('SELECT \"${2:field}\" FROM \"${3:table}\" WHERE \"${4:column}\" ${5:=} \"${0:value}\"\n')"],
         "description": "SELECT WHERE SQL query using the cursor's execute method."
     },
-    "Select Where Like": {
+    "Select Where Like SQL": {
         "prefix": ["psq/select-where-like"],
-        "body": ["${1:cursor}.execute('SELECT ${2:field} FROM ${3:table} WHERE ${4:column} LIKE ${0:expression}')"],
+        "body": ["${1:cursor}.execute('SELECT \"${2:field}\" FROM \"${3:table}\" WHERE \"${4:column}\" LIKE \"${0:expression}\"')"],
         "description": "SELECT WHERE LIKE SQL query using the cursor's execute method."
     },
+    //Create Table
+    "Create Table SQL": {
+        "prefix": ["psq/table"],
+        "body": ["${1:cursor}.execute('''CREATE TABLE IF NOT EXISTS \"${2:table}\" (\n\t\"${3:field}\" ${4|INTEGER,TEXT,BLOB,NUMERIC,REAL|}${5| NOT NULL, |}${6| UNIQUE, |})\n)''')"],
+        "description": ["CREATE TABLE SQL query. Creates an empty table if it doesn't exists already. To make a table with a primary key, use psq/table-key"]
+    },
+    "Create Table SQL With Primary Key": {
+        "prefix": "psq/table-key",
+        "body": ["${1:cursor}.execute('''CREATE TABLE IF NOT EXISTS \"${2:table}\" (\n\t\"${3:field}\" ${4|INTEGER,TEXT,BLOB,NUMERIC,REAL|}${5| NOT NULL, |}${6| UNIQUE, |},\n\tPRIMARY KEY(\"$3\"${7| AUTOINCREMENT, |})\n''')"],
+        "description": ["description"]
+    }
 }
